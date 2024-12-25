@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private int count;
-
+    private int totalPickups;
     // Current speed variable
     private float currentSpeed;
 
@@ -46,13 +46,15 @@ public class PlayerController : MonoBehaviour
         winText.text = "";
         loseText.text = "";
         UpdateSpeedText();
+        GameObject[] pickupObjects = GameObject.FindGameObjectsWithTag("Pick Up");
+        totalPickups = pickupObjects.Length;
     }
 
     void FixedUpdate()
     {
         // Get player input
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = Input.GetAxisRaw("Horizontal");
+        float moveVertical = Input.GetAxisRaw("Vertical");
 
         // Determine if there's any movement input
         bool isMoving = Mathf.Abs(moveHorizontal) > 0.01f || Mathf.Abs(moveVertical) > 0.01f;
@@ -97,6 +99,7 @@ public class PlayerController : MonoBehaviour
         // Check for jump input
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            Debug.Log("Jumping");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
@@ -143,7 +146,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 12)
+        if (count >= totalPickups)
         {
             winText.text = "You Win!";
         }
@@ -151,6 +154,6 @@ public class PlayerController : MonoBehaviour
 
     void UpdateSpeedText()
     {
-        speedText.text = "Speed: " + currentSpeed.ToString("F2");
+        speedText.text = "Speed: " + currentSpeed.ToString("F0");
     }
 }
