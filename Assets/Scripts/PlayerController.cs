@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Count: " + count.ToString();
+        countText.text = count.ToString();
         if (count >= totalPickups)
         {
             winText.text = "You Win!";
