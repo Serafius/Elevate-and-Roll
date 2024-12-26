@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Danger"))
         {
-            loseText.text = "You Lose!";
+            loseText.text = "You Lost!";
             acceleration = 0;
             deceleration = 0;
             startSpeed = 0;
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         countText.text = count.ToString();
         if (count >= totalPickups)
         {
-            winText.text = "You Win!";
+            winText.text = "YOU\nWON\n-------\nCONGRATS!";
             // Load the next level when the player wins
             gameManager?.LoadNextLevel();
         }

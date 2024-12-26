@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+   
 
     // Method to quit the game (works only in the built application)
     public void QuitGame()
